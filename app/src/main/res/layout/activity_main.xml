@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="410dp"
-        android:layout_height="727dp"
+        android:layout_height="846dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:orientation="vertical"
@@ -25,7 +25,14 @@
             android:id="@+id/parteJugador"
             android:name="com.example.piedra_papel_tijeras.JugadorFragment"
             android:layout_width="match_parent"
-            android:layout_height="34320dp" />
+            android:layout_height="340dp" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/resultadoTotal"
+            android:name="com.example.piedra_papel_tijeras.ResultadoTotalFragment"
+            android:layout_width="match_parent"
+            android:layout_height="166dp" />
+
 
 
     </LinearLayout>
