@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/david/AndroidStudioProjects/Piedra_Papel_Tijeras/app/src/main/res/layout/activity_main.xml" value="0.29438405797101447" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/Piedra_Papel_Tijeras/app/src/main/res/layout/fragment_jugador.xml" value="0.2418478260869565" />
+        <entry key="..\:/Users/david/AndroidStudioProjects/Piedra_Papel_Tijeras/app/src/main/res/layout/fragment_maquina.xml" value="0.2418478260869565" />
         <entry key="..\:/Users/dperea/AndroidStudioProjects/Piedra_Papel_Tijeras/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/dperea/AndroidStudioProjects/Piedra_Papel_Tijeras/app/src/main/res/layout/fragment_jugador.xml" value="0.358695652173913" />
         <entry key="..\:/Users/dperea/AndroidStudioProjects/Piedra_Papel_Tijeras/app/src/main/res/layout/fragment_maquina.xml" value="0.33" />

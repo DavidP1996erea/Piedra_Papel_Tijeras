@@ -17,7 +17,7 @@
         android:textSize="48sp" />
 
     <ImageView
-        android:id="@+id/papel"
+        android:id="@+id/papelJugador"
         android:layout_width="102dp"
         android:layout_height="94dp"
         android:layout_marginStart="30dp"
@@ -26,7 +26,7 @@
         android:src="@drawable/papel_higienico" />
 
     <ImageView
-        android:id="@+id/tijeras"
+        android:id="@+id/tijerasJugador"
         android:layout_width="102dp"
         android:layout_height="94dp"
         android:layout_marginStart="145dp"
@@ -35,7 +35,7 @@
         android:src="@drawable/tijeras" />
 
     <ImageView
-        android:id="@+id/piedra"
+        android:id="@+id/piedraJugador"
         android:layout_width="102dp"
         android:layout_height="94dp"
         android:clickable="true"

@@ -52,9 +52,9 @@ class JugadorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<ImageView>(R.id.papel).setOnClickListener(){listener?.rondaDeJuego()}
-        view.findViewById<ImageView>(R.id.tijeras).setOnClickListener(){listener?.rondaDeJuego()}
-        view.findViewById<ImageView>(R.id.piedra).setOnClickListener(){listener?.rondaDeJuego()}
+        view.findViewById<ImageView>(R.id.papelJugador).setOnClickListener(){listener?.jugarPapel()}
+        view.findViewById<ImageView>(R.id.tijerasJugador).setOnClickListener(){listener?.jugarTijeras()}
+        view.findViewById<ImageView>(R.id.piedraJugador).setOnClickListener(){listener?.jugarPiedra()}
     }
 
     companion object {

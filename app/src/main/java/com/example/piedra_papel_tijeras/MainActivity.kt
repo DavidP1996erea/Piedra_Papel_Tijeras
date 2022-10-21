@@ -8,12 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 
-class MainActivity : AppCompatActivity() , comunicador {
-
-
-    var listaFotosJuego = arrayListOf(
-        R.drawable.tijeras, R.drawable.papel_higienico, R.drawable.piedra
-    )
+class MainActivity : AppCompatActivity(), comunicador {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,57 +16,69 @@ class MainActivity : AppCompatActivity() , comunicador {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
+
     }
 
 
 
-    override fun rondaDeJuego() {
-
-        var imagenPapel = findViewById<ImageView>(R.id.papel)
-        var imagenTijeras = findViewById<ImageView>(R.id.tijeras)
-        var imagenPiedra = findViewById<ImageView>(R.id.piedra)
-
-        if(imagenPapel.isClickable){
-
-        var imagenes = findViewById<ImageView>(R.id.tijerasMaquina)
-        imagenes.setImageResource(listaFotosJuego[(0..2).random()])
-
-            imagenes.visibility = View.VISIBLE
 
 
-            declararGanador(imagenPapel, imagenes)
+    fun crearImagenRandom(): ImageView {
 
+        var listaFotosJuego = arrayOf(
+            findViewById<ImageView>(R.id.tijerasMaquina), findViewById(R.id.papelMaquina),
+            findViewById(R.id.piedraMaquina)
+        )
 
-        }else if(imagenTijeras.isClickable){
-            var imagenes = findViewById<ImageView>(R.id.tijerasMaquina)
-            imagenes.setImageResource(listaFotosJuego[(0..2).random()])
+        for(fotos:ImageView in listaFotosJuego){
 
-            imagenes.visibility = View.VISIBLE
-
-
-            declararGanador(imagenTijeras, imagenes)
-
-
-
-        }else{
-
-            var imagenes = findViewById<ImageView>(R.id.tijerasMaquina)
-            imagenes.setImageResource(listaFotosJuego[(0..2).random()])
-
-            imagenes.visibility = View.VISIBLE
-
-
-            declararGanador(imagenPiedra, imagenes)
+            fotos.visibility = View.INVISIBLE
 
         }
 
+        return listaFotosJuego[(0..2).random()]
+
     }
+
+    override fun jugarPapel() {
+        var imagenPapel = findViewById<ImageView>(R.id.papelJugador)
+
+        var imagenMaquina = crearImagenRandom()
+        imagenMaquina.visibility = View.VISIBLE
+
+        declararGanador(imagenPapel, imagenMaquina)
+
+    }
+
+    override fun jugarPiedra() {
+        var imagenPiedra = findViewById<ImageView>(R.id.piedraJugador)
+
+        var imagenMaquina = crearImagenRandom()
+        imagenMaquina.visibility = View.VISIBLE
+
+        declararGanador(imagenPiedra, imagenMaquina)
+
+    }
+
+    override fun jugarTijeras() {
+        var imagenTijera = findViewById<ImageView>(R.id.tijerasJugador)
+
+        var imagenMaquina = crearImagenRandom()
+        imagenMaquina.visibility = View.VISIBLE
+
+        declararGanador(imagenTijera, imagenMaquina)
+    }
+
 
     override fun declararGanador(imagenJugador: ImageView, imagenMaquina: ImageView) {
 
-        val bitmapPapel = (findViewById<ImageView>(R.id.papel).getDrawable() as BitmapDrawable).bitmap
-        val bitmapTijeras = (findViewById<ImageView>(R.id.tijeras).getDrawable() as BitmapDrawable).bitmap
-        val bitmapPiedra = (findViewById<ImageView>(R.id.piedra).getDrawable() as BitmapDrawable).bitmap
+        val bitmapPapel = (findViewById<ImageView>(R.id.papelJugador).getDrawable() as BitmapDrawable).bitmap
+        val bitmapTijeras = (findViewById<ImageView>(R.id.tijerasJugador).getDrawable() as BitmapDrawable).bitmap
+        val bitmapPiedra = (findViewById<ImageView>(R.id.piedraJugador).getDrawable() as BitmapDrawable).bitmap
+
+        val bitmapPapelMaquina = (findViewById<ImageView>(R.id.papelMaquina).getDrawable() as BitmapDrawable).bitmap
+        val bitmapTijerasMaquina = (findViewById<ImageView>(R.id.tijerasMaquina).getDrawable() as BitmapDrawable).bitmap
+        val bitmapPiedraMaquina = (findViewById<ImageView>(R.id.piedraMaquina).getDrawable() as BitmapDrawable).bitmap
 
 
 
@@ -81,22 +88,20 @@ class MainActivity : AppCompatActivity() , comunicador {
 
 
 
-        if(bitmapJugador==bitmapPapel && bitmap2Maquina==bitmapPiedra){
+        if(bitmapJugador==bitmapPapel && bitmap2Maquina==bitmapPiedraMaquina){
 
             mensajeVictoria().show()
 
         }
-        if(bitmapJugador==bitmapTijeras && bitmap2Maquina==bitmapPapel){
+        if(bitmapJugador==bitmapTijeras && bitmap2Maquina==bitmapPapelMaquina){
 
             mensajeVictoria().show()
 
         }
 
-        if(bitmapJugador==bitmapPiedra && bitmap2Maquina==bitmapTijeras){
+        if(bitmapJugador==bitmapPiedra && bitmap2Maquina==bitmapTijerasMaquina){
             mensajeVictoria().show()
         }
-
-
 
     }
 
@@ -105,7 +110,7 @@ class MainActivity : AppCompatActivity() , comunicador {
     }
 
 
-    fun mensajeVictoria():AlertDialog{
+    fun mensajeVictoria(): AlertDialog {
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Victoria!!!!")
@@ -117,7 +122,7 @@ class MainActivity : AppCompatActivity() , comunicador {
         return mostrarVictoria
     }
 
-    fun mensajeEmpate():AlertDialog{
+    fun mensajeEmpate(): AlertDialog {
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Empate 😒👌!")
