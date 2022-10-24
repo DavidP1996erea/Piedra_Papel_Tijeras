@@ -16,8 +16,11 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity(), comunicador {
 
-    var puntosJugador=0;
-    var puntosMaquina=0;
+    /**
+     * Variables que servirán para llevar un recuento de victorias
+     */
+    var puntosJugador=0
+    var puntosMaquina=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +30,13 @@ class MainActivity : AppCompatActivity(), comunicador {
 
     }
 
+    /**
+     * Este método cambia la imagen de referencia que toma piedraMaquina. Esto se hace a través
+     * de dos checks, que al estar activados cambian la imagen de la piedra.
+     */
 
 
-    fun cambiarSkin(view: View):ImageView{
+    fun cambiarSkin(view: View){
 
         var laROCA = findViewById<CheckBox>(R.id.cambiarSkin)
         var laROCAHUEVO = findViewById<CheckBox>(R.id.cambiarSkin2)
@@ -44,8 +51,16 @@ class MainActivity : AppCompatActivity(), comunicador {
             imagenPiedra.setImageResource(R.drawable.piedra)
         }
 
-        return imagenPiedra
     }
+
+    /**
+     * Se crea un array con las 3 fotos que se necesita de la parte de la máquina. Siempre
+     * que entra en este método se recorre la lista y se ponen las imagenes en invisible,
+     * para que no se pongan unas encima de otras. Este método retorna un objeto random de ese
+     * array, de esta forma se consigue que cada vez que se llama a este método devuelva
+     * una imagen diferente.
+     *
+     */
 
     fun crearImagenRandom(): ImageView {
 
@@ -65,6 +80,17 @@ class MainActivity : AppCompatActivity(), comunicador {
 
 
     }
+
+
+    /**
+     * Los siguientes tres métodos son iguales, primero se crean dos variables tipo ImagenView,
+     * en la primera se guarda la imagen correspondiente del jugador, en este caso papel, en el
+     * siguiente método piedra y el último tijeras. En la segunda variable se llama al método
+     * crearImagenRandom, que devuelve una de las  tres imágenes de forma random, esto se hace
+     * en los tres métodos. Por último, tanto la imagen del jugador como la aleatoria de la máquina
+     * se meten como parámetros en un método llamado declararGanador, que será ahí donde se
+     * valide quién es el ganador de cada baza.
+     */
 
     override fun jugarPapel() {
         var imagenPapel = findViewById<ImageView>(R.id.papelJugador)
@@ -95,25 +121,35 @@ class MainActivity : AppCompatActivity(), comunicador {
         declararGanador(imagenTijera, imagenMaquina)
     }
 
+    /**
+     * En este método se hace una serie de if que validarán quién será el ganador de cada baza,
+     * para ello se crean 6 variables, tres de ellas para los elementos del jugador y las otras
+     * tres para los elementos de la máquina. Luego se crean 2 variables indicando quién es el
+     * jugador y quién es la máquina. Todas las validaciones llamarán a otros dos métodos
+     * que devuelven un mensaje indicando si el jugador a perdido o ganado.
+     */
 
     override fun declararGanador(imagenJugador: ImageView, imagenMaquina: ImageView) {
 
-        val bitmapPapel = (findViewById<ImageView>(R.id.papelJugador).getDrawable() as BitmapDrawable).bitmap
-        val bitmapTijeras = (findViewById<ImageView>(R.id.tijerasJugador).getDrawable() as BitmapDrawable).bitmap
-        val bitmapPiedra = (findViewById<ImageView>(R.id.piedraJugador).getDrawable() as BitmapDrawable).bitmap
+        val bitmapPapel = (findViewById<ImageView>(R.id.papelJugador).drawable as BitmapDrawable).bitmap
+        val bitmapTijeras = (findViewById<ImageView>(R.id.tijerasJugador).drawable as BitmapDrawable).bitmap
+        val bitmapPiedra = (findViewById<ImageView>(R.id.piedraJugador).drawable as BitmapDrawable).bitmap
 
-        val bitmapPapelMaquina = (findViewById<ImageView>(R.id.papelMaquina).getDrawable() as BitmapDrawable).bitmap
-        val bitmapTijerasMaquina = (findViewById<ImageView>(R.id.tijerasMaquina).getDrawable() as BitmapDrawable).bitmap
-        val bitmapPiedraMaquina = (findViewById<ImageView>(R.id.piedraMaquina).getDrawable() as BitmapDrawable).bitmap
-
-
-
-
-        val bitmapJugador = (imagenJugador.getDrawable() as BitmapDrawable).bitmap
-        val bitmap2Maquina = (imagenMaquina.getDrawable() as BitmapDrawable).bitmap
+        val bitmapPapelMaquina = (findViewById<ImageView>(R.id.papelMaquina).drawable as BitmapDrawable).bitmap
+        val bitmapTijerasMaquina = (findViewById<ImageView>(R.id.tijerasMaquina).drawable as BitmapDrawable).bitmap
+        val bitmapPiedraMaquina = (findViewById<ImageView>(R.id.piedraMaquina).drawable as BitmapDrawable).bitmap
 
 
 
+
+        val bitmapJugador = (imagenJugador.drawable as BitmapDrawable).bitmap
+        val bitmap2Maquina = (imagenMaquina.drawable as BitmapDrawable).bitmap
+
+
+        /**
+         * Se valida en primer lugar el ganador y el perdedor cuando el jugador juega papel.
+         * En estas validaciones se aumentarán las victorias de la máquina y del jugador.
+         */
         if(bitmapJugador==bitmapPapel && bitmap2Maquina==bitmapPiedraMaquina){
 
             mensajeVictoria().show()
@@ -126,8 +162,9 @@ class MainActivity : AppCompatActivity(), comunicador {
         }
 
 
-
-
+        /**
+         * Luego se valida el resultado cuando el jugador escoje tijeras
+         */
         if(bitmapJugador==bitmapTijeras && bitmap2Maquina==bitmapPapelMaquina){
 
             mensajeVictoria().show()
@@ -139,6 +176,10 @@ class MainActivity : AppCompatActivity(), comunicador {
             puntosMaquina++
 
         }
+
+        /**
+         * Por último, cuando el jugador elige piedra
+         */
 
         if(bitmapJugador==bitmapPiedra && bitmap2Maquina==bitmapTijerasMaquina){
             mensajeVictoria().show()
@@ -154,6 +195,10 @@ class MainActivity : AppCompatActivity(), comunicador {
 
     }
 
+    /**
+     * En este método se modifica el texto del TextView de los puntos del jugador y de la
+     * máquina, cambiando ambos por las variables creadas al inicio.
+     */
     override fun mostrarResultadoTotal() {
 
         var puntuajeJugador = findViewById<TextView>(R.id.mostrarResultadoJugador)
@@ -163,7 +208,9 @@ class MainActivity : AppCompatActivity(), comunicador {
 
     }
 
-
+    /**
+     * Método que devuelve un mensaje de victoria
+     */
     fun mensajeVictoria(): AlertDialog {
 
         val builder = AlertDialog.Builder(this)
@@ -176,6 +223,9 @@ class MainActivity : AppCompatActivity(), comunicador {
         return mostrarVictoria
     }
 
+    /**
+     * Método que devuelve un mensaje de derrota
+     */
     fun mensajeDerrota(): AlertDialog {
 
         val builder = AlertDialog.Builder(this)
