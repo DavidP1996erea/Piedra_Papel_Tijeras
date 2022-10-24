@@ -1,15 +1,23 @@
 package com.example.piedra_papel_tijeras
 
+import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.view.View
+import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity(), comunicador {
 
+    var puntosJugador=0;
+    var puntosMaquina=0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,14 +29,35 @@ class MainActivity : AppCompatActivity(), comunicador {
 
 
 
+    fun cambiarSkin(view: View):ImageView{
 
+        var laROCA = findViewById<CheckBox>(R.id.cambiarSkin)
+        var imagenPiedra = findViewById<ImageView>(R.id.piedraMaquina)
+
+
+        if(laROCA.isChecked){
+            imagenPiedra.setImageResource(R.drawable.laroca)
+        }else{
+            imagenPiedra.setImageResource(R.drawable.piedra)
+        }
+
+
+
+
+        return imagenPiedra
+    }
 
     fun crearImagenRandom(): ImageView {
+
+
+
+
 
         var listaFotosJuego = arrayOf(
             findViewById<ImageView>(R.id.tijerasMaquina), findViewById(R.id.papelMaquina),
             findViewById(R.id.piedraMaquina)
         )
+
 
         for(fotos:ImageView in listaFotosJuego){
 
@@ -37,6 +66,7 @@ class MainActivity : AppCompatActivity(), comunicador {
         }
 
         return listaFotosJuego[(0..2).random()]
+
 
     }
 
@@ -91,21 +121,49 @@ class MainActivity : AppCompatActivity(), comunicador {
         if(bitmapJugador==bitmapPapel && bitmap2Maquina==bitmapPiedraMaquina){
 
             mensajeVictoria().show()
+            puntosJugador++
 
+        }else if(bitmapJugador==bitmapPapel && bitmap2Maquina==bitmapTijerasMaquina){
+
+            mensajeDerrota().show()
+            puntosMaquina++
         }
+
+
+
+
         if(bitmapJugador==bitmapTijeras && bitmap2Maquina==bitmapPapelMaquina){
 
             mensajeVictoria().show()
+            puntosJugador++
+
+        }else if (bitmapJugador==bitmapTijeras && bitmap2Maquina==bitmapPiedraMaquina){
+
+            mensajeDerrota().show()
+            puntosMaquina++
 
         }
 
         if(bitmapJugador==bitmapPiedra && bitmap2Maquina==bitmapTijerasMaquina){
             mensajeVictoria().show()
+            puntosJugador++
+
+        }else if (bitmapJugador==bitmapPiedra && bitmap2Maquina==bitmapPapelMaquina){
+            mensajeDerrota().show()
+            puntosMaquina++
+
         }
+
+        mostrarResultadoTotal()
 
     }
 
     override fun mostrarResultadoTotal() {
+
+        var puntuajeJugador = findViewById<TextView>(R.id.mostrarResultadoJugador)
+        var puntuajeMaquina = findViewById<TextView>(R.id.mostrarResultadoMaquina)
+        puntuajeJugador.text=puntosJugador.toString()
+        puntuajeMaquina.text=puntosMaquina.toString()
 
     }
 
@@ -122,15 +180,20 @@ class MainActivity : AppCompatActivity(), comunicador {
         return mostrarVictoria
     }
 
-    fun mensajeEmpate(): AlertDialog {
+    fun mensajeDerrota(): AlertDialog {
 
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Empate 😒👌!")
-        builder.setMessage("Has quedado empate, al menos no has perdido")
+        builder.setTitle("Has perdido...😦😵!")
+        builder.setMessage("Has perdido ante la máquina, adiós")
         builder.setPositiveButton("Aceptar", null)
 
         val mostrarVictoria = builder.create()
 
         return mostrarVictoria
     }
+
+
+
 }
+
+

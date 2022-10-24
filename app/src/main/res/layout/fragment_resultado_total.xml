@@ -3,12 +3,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResultadoTotalFragment">
+    tools:context=".ResultadoTotalFragment"
+    android:background="@color/fondoResultado">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginTop="20dp"
+        android:text="Victorias del jugador" />
+
+
+    <TextView
+        android:id="@+id/mostrarResultadoJugador"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="155dp"
+        android:text="0" />
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:text="Victorias de la máquina" />
+
+
+    <TextView
+        android:id="@+id/mostrarResultadoMaquina"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="155dp"
+        android:text="0" />
+
 
 </FrameLayout>
