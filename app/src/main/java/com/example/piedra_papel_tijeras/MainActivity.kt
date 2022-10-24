@@ -32,26 +32,22 @@ class MainActivity : AppCompatActivity(), comunicador {
     fun cambiarSkin(view: View):ImageView{
 
         var laROCA = findViewById<CheckBox>(R.id.cambiarSkin)
+        var laROCAHUEVO = findViewById<CheckBox>(R.id.cambiarSkin2)
         var imagenPiedra = findViewById<ImageView>(R.id.piedraMaquina)
 
 
         if(laROCA.isChecked){
             imagenPiedra.setImageResource(R.drawable.laroca)
+        }else if(laROCAHUEVO.isChecked){
+            imagenPiedra.setImageResource(R.drawable.laroca2)
         }else{
             imagenPiedra.setImageResource(R.drawable.piedra)
         }
-
-
-
 
         return imagenPiedra
     }
 
     fun crearImagenRandom(): ImageView {
-
-
-
-
 
         var listaFotosJuego = arrayOf(
             findViewById<ImageView>(R.id.tijerasMaquina), findViewById(R.id.papelMaquina),

@@ -8,13 +8,20 @@
     android:background="@color/fondo">
 
 
+    <ImageView
+
+        android:layout_width="150dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/piedrapapeltijeras" />
 
     <ImageView
         android:id="@+id/papelMaquina"
         android:layout_width="150dp"
         android:layout_height="120dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="160dp"
         android:visibility="invisible"
         android:src="@drawable/papel_higienico" />
 
@@ -22,8 +29,8 @@
         android:id="@+id/tijerasMaquina"
         android:layout_width="150dp"
         android:layout_height="120dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="160dp"
         android:visibility="invisible"
         android:src="@drawable/tijeras" />
 
@@ -31,8 +38,8 @@
         android:id="@+id/piedraMaquina"
         android:layout_width="150dp"
         android:layout_height="120dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="160dp"
         android:src="@drawable/piedra"
         android:visibility="invisible" />
 
@@ -41,9 +48,18 @@
         android:id="@+id/cambiarSkin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
         android:onClick="cambiarSkin"
         android:text="Cambiar skin LA ROCA" />
+
+    <CheckBox
+        android:id="@+id/cambiarSkin2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="40dp"
+        android:onClick="cambiarSkin"
+        android:text="Cambiar skin LA ROCA HUEVO" />
 
 </FrameLayout>

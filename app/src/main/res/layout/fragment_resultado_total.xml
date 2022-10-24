@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
         android:text="Victorias del jugador" />
 
 
@@ -20,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="155dp"
+        android:layout_marginStart="175dp"
         android:text="0" />
 
     <TextView
@@ -28,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
+        android:layout_marginStart="20dp"
         android:text="Victorias de la máquina" />
 
 
@@ -36,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
-        android:layout_marginStart="155dp"
+        android:layout_marginStart="175dp"
         android:text="0" />
 
 
