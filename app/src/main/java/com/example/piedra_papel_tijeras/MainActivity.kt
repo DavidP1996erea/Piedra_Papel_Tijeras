@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity(), comunicador {
 
     }
 
+
+
     /**
      * Este método cambia la imagen de referencia que toma piedraMaquina. Esto se hace a través
      * de dos checks, que al estar activados cambian la imagen de la piedra.
@@ -207,6 +209,17 @@ class MainActivity : AppCompatActivity(), comunicador {
         puntuajeMaquina.text=puntosMaquina.toString()
 
     }
+
+    override fun resetearPuntos() {
+        var reset = findViewById<ImageView>(R.id.resetearPuntos)
+        var puntosJugador = findViewById<TextView>(R.id.mostrarResultadoJugador)
+        var puntosMaquina = findViewById<TextView>(R.id.mostrarResultadoMaquina)
+
+
+        puntosJugador.text="0"
+        puntosMaquina.text="0"
+    }
+
 
     /**
      * Método que devuelve un mensaje de victoria

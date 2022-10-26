@@ -8,5 +8,5 @@ interface comunicador {
    fun jugarTijeras()
    fun declararGanador(imagenJugador: ImageView,imagenMaquina: ImageView)
    fun mostrarResultadoTotal()
-
+   fun resetearPuntos()
 }
