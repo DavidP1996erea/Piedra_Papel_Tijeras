@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "709905792820",
+    "project_id": "papeltijeras-26dc8",
+    "storage_bucket": "papeltijeras-26dc8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709905792820:android:c94b9d86bca99df4fc6f61",
+        "android_client_info": {
+          "package_name": "com.example.piedra_papel_tijeras"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "709905792820-qr9pvb0vdr1odfoh15dpngjvhfbh5u37.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.piedra_papel_tijeras",
+            "certificate_hash": "fbc20138c2607d6473a98071b81224465db28455"
+          }
+        },
+        {
+          "client_id": "709905792820-oabo2cgaq6fbqoctjd9j71k7kg51489v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVmHasmpiml57MWmlOwcup1L8xUdgRYok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "709905792820-1j2k9bpbph835u5iq5cs2nhb7gf0hajc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

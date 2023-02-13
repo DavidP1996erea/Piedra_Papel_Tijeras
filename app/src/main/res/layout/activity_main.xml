@@ -14,12 +14,17 @@
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/parteMaquina"
             android:name="com.example.piedra_papel_tijeras.MaquinaFragment"
             android:layout_width="match_parent"
-            android:layout_height="340dp" />
+            android:layout_height="30dp" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/parteJugador"
