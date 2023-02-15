@@ -1,9 +1,11 @@
 package com.example.piedra_papel_tijeras
 
 import android.app.Activity
+import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -15,12 +17,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class login : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-
+    var fireStoreDatabase = FirebaseFirestore.getInstance()
 
     private val signInLauncher = registerForActivityResult(
         FirebaseAuthUIActivityResultContract()
@@ -49,7 +52,25 @@ class login : AppCompatActivity() {
             val user = FirebaseAuth.getInstance().currentUser
             val intent : Intent = Intent(this , MainActivity::class.java)
             intent.putExtra("name" , user?.displayName)
+            intent.putExtra("correo", user?.email)
             startActivity(intent)
+
+
+                // create a dummy data
+                val hashMap = hashMapOf<String, String>(
+                    "Correo" to user?.email.toString(),
+                    "Nombre" to user?.displayName.toString(),
+                    )
+
+                // use the add() method to create a document inside users collection
+                fireStoreDatabase.collection("Usuarios")
+                    .add(hashMap)
+                    .addOnSuccessListener {
+                        Log.d(ContentValues.TAG, "Added document with ID ${it.id}")
+                    }
+                    .addOnFailureListener { exception ->
+                        Log.w(ContentValues.TAG, "Error adding document $exception")
+                    }
 
         } else {
             // Sign in failed. If response is null the user canceled the

@@ -1,9 +1,11 @@
 package com.example.piedra_papel_tijeras
 
 
+import android.content.ContentValues.TAG
 import android.graphics.drawable.BitmapDrawable
 
 import android.os.Bundle
+import android.util.Log
 
 import android.view.View
 
@@ -12,7 +14,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class MainActivity : AppCompatActivity(), comunicador {
@@ -31,6 +33,10 @@ class MainActivity : AppCompatActivity(), comunicador {
         val displayName = intent.getStringExtra("name")
         var nombreCorreo = findViewById<TextView>(R.id.textView)
         nombreCorreo.text = displayName
+
+        val correo = intent.getStringExtra("correo")
+
+
 
     }
 

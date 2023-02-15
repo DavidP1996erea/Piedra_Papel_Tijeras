@@ -9,8 +9,6 @@
     <LinearLayout
         android:layout_width="410dp"
         android:layout_height="846dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,19 +16,21 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:textSize="22dp"
+            android:background="@color/fondo"
             />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/parteMaquina"
             android:name="com.example.piedra_papel_tijeras.MaquinaFragment"
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="335dp" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/parteJugador"
             android:name="com.example.piedra_papel_tijeras.JugadorFragment"
             android:layout_width="match_parent"
-            android:layout_height="340dp" />
+            android:layout_height="302dp" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/resultadoTotal"
