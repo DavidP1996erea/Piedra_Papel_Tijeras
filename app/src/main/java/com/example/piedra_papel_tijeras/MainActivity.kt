@@ -30,11 +30,11 @@ class MainActivity : AppCompatActivity(), comunicador {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
+        // Se recoge el nombre del usuario mandado por el intent del login
         val displayName = intent.getStringExtra("name")
+        // Se muestra el nombre
         var nombreCorreo = findViewById<TextView>(R.id.textView)
         nombreCorreo.text = displayName
-
-        val correo = intent.getStringExtra("correo")
 
 
 

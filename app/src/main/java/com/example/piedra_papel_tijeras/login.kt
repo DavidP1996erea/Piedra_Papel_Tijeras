@@ -22,12 +22,16 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class login : AppCompatActivity() {
 
+    // Se crean las variables
     private lateinit var auth: FirebaseAuth
-    var fireStoreDatabase = FirebaseFirestore.getInstance()
+    private lateinit var fireStoreDatabase : FirebaseFirestore
 
+
+    // Utilizado en el método signIn
     private val signInLauncher = registerForActivityResult(
         FirebaseAuthUIActivityResultContract()
     ) { res ->
+        // Introduce como parámetro en este método la cuenta introducida
         this.onSignInResult(res)
     }
 
@@ -35,8 +39,13 @@ class login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        /* Se inicializa las variables con las instance de
+            la autenticación y de la base de datos
+        */
         auth = FirebaseAuth.getInstance()
+        fireStoreDatabase = FirebaseFirestore.getInstance()
 
+        // Se llama al método signIn al pulsar el botón
         findViewById<Button>(R.id.gSignInBtn).setOnClickListener {
             signIn()
         }
@@ -44,48 +53,49 @@ class login : AppCompatActivity() {
     }
 
 
-
+    /**
+     * Se comprueba que la autenticación se haya realizado, y se guarda en una variable
+     * el usuario que está actualmente iniciado. Luego se envía al a ativity main
+     * junto al nombre del usuario, que se usará para mostrarlo. Por último
+     * se guarda en la base de datos el correo y el nombre del usuario, creando
+     * un hasMap con ambos datos, y añadiendo este a la colección Usuarios
+     * de la base de datos.
+     */
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
-        val response = result.idpResponse
         if (result.resultCode == RESULT_OK) {
             // Successfully signed in
             val user = FirebaseAuth.getInstance().currentUser
-            val intent : Intent = Intent(this , MainActivity::class.java)
+            val intent = Intent(this , MainActivity::class.java)
             intent.putExtra("name" , user?.displayName)
-            intent.putExtra("correo", user?.email)
+
             startActivity(intent)
 
 
-                // create a dummy data
+                // Se crea el hasMap con los datos del usuario
                 val hashMap = hashMapOf<String, String>(
                     "Correo" to user?.email.toString(),
                     "Nombre" to user?.displayName.toString(),
                     )
 
-                // use the add() method to create a document inside users collection
+                // Se añade los datos del usuario al collection Usuarios
                 fireStoreDatabase.collection("Usuarios")
                     .add(hashMap)
-                    .addOnSuccessListener {
-                        Log.d(ContentValues.TAG, "Added document with ID ${it.id}")
-                    }
-                    .addOnFailureListener { exception ->
-                        Log.w(ContentValues.TAG, "Error adding document $exception")
-                    }
 
-        } else {
-            // Sign in failed. If response is null the user canceled the
-            // sign-in flow using the back button. Otherwise check
-            // response.getError().getErrorCode() and handle the error.
-            // ...
         }
     }
 
+    /**
+     * Método que primero crea un array con los servicios usados por el
+     * AuthUI, en nuestro caso la autenticación por google. Luego
+     * se crea y se inicia el intento de conectar con el correo.
+     */
     private fun signIn(){
         val providers = arrayListOf(
             AuthUI.IdpConfig.GoogleBuilder().build()
         )
 
-// Create and launch sign-in intent
+
+
         val signInIntent = AuthUI.getInstance()
             .createSignInIntentBuilder()
             .setAvailableProviders(providers)
